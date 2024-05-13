@@ -1,5 +1,5 @@
 //Target the players guessed letters
-const guessedLetters = document.querySelector(".guessed-letters");
+const guessedLettersElement = document.querySelector(".guessed-letters");
 //Target guess button
 const guessButton = document.querySelector(".guess");
 //Target the text input where the player will guess a letter
@@ -15,6 +15,7 @@ const message = document.querySelector(".message");
 const playAgainButton = document.querySelector(".play-again hide");
 
 const word = "magnolia";
+const guessedLetters = [];
 
 // Display our symbols as placeholders for the chosen word's letters
 const placeholder = function (word) {
@@ -30,8 +31,14 @@ placeholder(word);
 
 guessButton.addEventListener("click", function (e) {
     e.preventDefault();
+    message.innerText = "";
     const guess = letterInput.value;
-    console.log(guess);
+    const goodGuess = validatePlayerInput(guess);
+
+    if (goodGuess) {
+        //Guess the letter when we have a letter
+        makeGuess(guess);
+    }
     letterInput.value = "";
 });
 
@@ -53,3 +60,14 @@ const validatePlayerInput = function (input) {
         return input;
     }
 };
+
+//Declare a function to capture input
+const makeGuess = function (guess) {
+    guess = guess.toUpperCase();
+    if (guessedLetters.includes(guess)) {
+        message.innerText = "You have already guessed that letter. Try again.";
+    } else {
+        guessedLetters.push(guess);
+        console.log(guessedLetters);
+    }
+}
