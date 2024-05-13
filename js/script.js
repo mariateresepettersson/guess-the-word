@@ -34,3 +34,22 @@ guessButton.addEventListener("click", function (e) {
     console.log(guess);
     letterInput.value = "";
 });
+
+const validateGuess = function (letterInput) {
+    const acceptedLetter = [a - zA - Z];
+};
+
+//Declare function that checks player's input
+const validatePlayerInput = function (input) {
+    const acceptedLetter = /[a-zA-Z]/;
+    if (input.length === 0) {
+        //If empty then return message
+        message.innerText = "Please enter a letter.";
+    } else if (input.lenth > 1) {
+        message.innerText = "Please enter a single letter.";
+    } else if (!input.match(acceptedLetter)) {
+        message.innerText = "Invalid input. Please enter a valid letter (A-Z, a-z).";
+    } else {
+        return input;
+    }
+};
