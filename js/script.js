@@ -69,5 +69,17 @@ const makeGuess = function (guess) {
     } else {
         guessedLetters.push(guess);
         console.log(guessedLetters);
+        displayGuessedLetters();
     }
 }
+
+//Declare a function to show the guessed letters
+const displayGuessedLetters = function () {
+    //Clear the list
+    guessedLettersElement.innerHTML = "";
+    for (const letter of guessedLetters) {
+        const li = document.createElement("li");
+        li.innerText = letter;
+        guessedLettersElement.append(li)
+    }
+};
